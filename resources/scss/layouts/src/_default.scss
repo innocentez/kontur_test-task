@@ -1,0 +1,15 @@
+.app
+{
+    @apply
+    w-full
+    min-h-full
+    flex
+    flex-col
+}
+
+.page-content
+{
+    @apply
+    w-full
+    flex-auto
+}

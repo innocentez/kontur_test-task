@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "core/core";
+
+@import "layouts/layouts";
+@import "widgets/widgets";
+@import "ui/ui";
+@import "components/components";
