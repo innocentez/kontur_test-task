@@ -4,7 +4,7 @@ namespace Modules\Lead\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateLeadRequest extends FormRequest
+class LeadCreateFormRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,9 @@ class CreateLeadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone_number' => ['required', 'regex:/(0)[0-9]{10}', 'unique:leads,phone_number'],
+            'full_name' => ['required', 'string', 'between:2,50'],
+            'phone_number' => ['required', 'regex:/^(\+?\d{1,3})?(\d{10})$/', 'unique:leads,phone_number'],
             'email' => ['required', 'email:rfc', 'unique:leads,email'],
-            'name' => ['required', 'string', 'between:2,50'],
         ];
     }
 }
