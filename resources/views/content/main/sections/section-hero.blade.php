@@ -8,7 +8,7 @@
         </div>
 
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            @include('content.main.modules.contact-form')
+            @include('content.main.sections.section-hero.modules.contact-form')
         </div>
     </div>
 </div>

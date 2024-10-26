@@ -3,5 +3,5 @@
 ])
 
 <label class="label">
-    <span class="label-text">{{ $text }}</span>
+    <span  {{ $attributes->merge(["class" => "label-text"]) }}>{{ $text }}</span>
 </label>

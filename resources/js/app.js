@@ -28,19 +28,64 @@ Alpine.store('lead', {
                     return true;
                 }
             },
+            phoneNumber: {
+                value: '',
+                pattern: /^(\+?\d{1,3})?(\d{10})$/,
+                isValid: false,
+                error: '',
+                check: function () {
+                    if (this.value === '') {
+                        this.error = 'Номере телефона обязателен к заполнению.';
+                        this.isValid = false;
+                        return false;
+                    } else if (!this.pattern.test(this.value)) {
+                        this.error = 'Пожалуйста, введите существующий номер телефона.';
+                        this.isValid = false;
+                        return false;
+                    }
+
+                    this.error = '';
+                    this.isValid = true;
+                    return true;
+                }
+            },
+            email: {
+                value: '',
+                pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                isValid: false,
+                error: '',
+                check: function () {
+                    if (this.value === '') {
+                        this.error = 'E-mail адрес обязателен к заполнению.';
+                        this.isValid = false;
+                        return false;
+                    } else if (!this.pattern.test(this.value)) {
+                        this.error = 'Пожалуйста, введите существующий Email.';
+                        this.isValid = false;
+                        return false;
+                    }
+
+                    this.error = '';
+                    this.isValid = true;
+                    return true;
+                }
+            },
         },
         preparePayload()
         {
-            const isDataValid = (
-                this.data.fullName.check()
+            const isFilledDataValid = (
+                this.data.fullName.check() &&
+                this.data.phoneNumber.check() &&
+                this.data.email.check()
             );
 
-            if (!isDataValid) {
+            if (!isFilledDataValid)
                 return false;
-            }
 
             const payload = {
                 full_name: this.data.fullName.value,
+                phone_number: this.data.phoneNumber.value,
+                email: this.data.email.value,
             }
 
             return this.sendPayload(payload)
