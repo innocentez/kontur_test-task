@@ -50,8 +50,8 @@ return [
     */
 
     'attributes' => [
-        'phome_number' => 'Номер телефона',
+        'phone_number' => 'Номер телефона',
         'email' => 'E-Mail',
-        'name' => 'Полное Имя'
+        'full_name' => 'Полное Имя'
     ],
 ];
